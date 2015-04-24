@@ -1,0 +1,24 @@
+{
+  "name": "status-check",
+  "version": "0.0.1",
+  "description": "This package take a list of website link as csv and create a file with the status code after hitting every links",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "HTTP",
+    "response",
+    "link-checker",
+    "status-check",
+    "website-status"
+  ],
+  "author": "Sahasrangshu Guha",
+  "license": "MIT",
+  "dependencies": {
+    "csv-array": "0.0.18",
+    "fs": "0.0.2",
+    "phantom": "^0.7.2",
+    "webpage": "^0.1.0"
+  }
+}
