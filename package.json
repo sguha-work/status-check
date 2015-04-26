@@ -1,8 +1,8 @@
 {
   "name": "status-check",
   "version": "0.0.1",
-  "description": "This package take a list of website link as csv and create a file with the status code after hitting every links",
-  "main": "init.js",
+  "description": "This package take a list of website link as csv and create an array with the status code and description after hitting every links",
+  "main": "status-check.js",
   "scripts": {},
   "repository": {
     "type": "git",
@@ -15,7 +15,12 @@
     "status-check",
     "website-status",
     "HTTP-status",
-    "Web-crawler"
+    "Web-crawler",
+    "http",
+    "checker",
+    "status",
+    "connect",
+    "express"
   ],
   "author": "Sahasrangshu Guha",
   "license": "MIT",
