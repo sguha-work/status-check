@@ -1,18 +1,21 @@
 module.exports = {
-	testLinkStatus : function(fileName, callBack) {
+	testLinkStatus : function(fileName, callBack, showProgressInConsole) {
+		if(typeof showProgressInConsole == "undefined") {
+			showProgressInConsole = false;
+		}
 		var presentObject = this;
 		var csv = require('csv-array');
 		csv.parseCSV("links.csv", function(data) {
-			presentObject.startCheckingLink(data, callBack);
+			presentObject.startCheckingLink(data, callBack, showProgressInConsole);
 		}, false);
 	},
 
-	startCheckingLink : function(linksArray, callBack) {
+	startCheckingLink : function(linksArray, callBack, showProgressInConsole) {
 		var presentObject = this;
-		presentObject.checkSingleLink(linksArray,0, callBack,[]);
+		presentObject.checkSingleLink(linksArray,0, callBack,[], showProgressInConsole);
 	},
 
-	checkSingleLink : function(linksArray, index, callBack, outputArray) {
+	checkSingleLink : function(linksArray, index, callBack, outputArray, showProgressInConsole) {
 		var presentObject = this;
 		var request = require('request');
 		request(linksArray[index], function(error, response, body) {
@@ -21,11 +24,14 @@ module.exports = {
 			outputObject["statusCode"] = ((typeof response != "undefined")?response.statusCode:"XXX");
 			outputObject["description"] = ((typeof response != "undefined")?presentObject.getStatusDescription(response.statusCode):"Invalid URL");
 			outputArray.push(outputObject);
+			if(showProgressInConsole) {
+				console.log(" Checked:: "+outputObject["url"]+" Status:: "+outputObject["statusCode"]+" Description:: "+ outputObject["description"]);
+			}
 			index+=1;
 			if(index>=linksArray.length) {
 				callBack(outputArray);
 			} else {
-				presentObject.checkSingleLink(linksArray, index, callBack, outputArray);
+				presentObject.checkSingleLink(linksArray, index, callBack, outputArray, showProgressInConsole);
 			}
 		});
 	},
