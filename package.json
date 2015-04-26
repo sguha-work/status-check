@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "description": "This package take a list of website link as csv and create a file with the status code after hitting every links",
   "main": "init.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sguha-work/status-check.git"
   },
   "keywords": [
     "HTTP",

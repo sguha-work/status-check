@@ -1,5 +1,5 @@
 module.exports = {
-	testLinkStatus : function(fileName, callBack, showProgressInConsole) {
+	testLinks : function(fileName, callBack, showProgressInConsole) {
 		if(typeof showProgressInConsole == "undefined") {
 			showProgressInConsole = false;
 		}
