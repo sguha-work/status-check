@@ -43,8 +43,8 @@ test.csv file contains
 	npmjs.com 
 ```
 ```javascript
-	var sc = require('./status-check');
-	sc.testLinkStatus("links.csv", function(data) {
+	var sc = require('status-check');
+	sc.testLinks("links.csv", function(data) {
 		console.log(JSON.stringify(data));
 	}, true);
  /*
