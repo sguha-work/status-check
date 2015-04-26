@@ -30,130 +30,58 @@ After installing the package you can use the "testLinks" method as follows
    */
 ```
 ### Example
+#### Note:
+>The links will be checked just as it provided so if given link dosn't contain "http://"" it may be considered as broken link
 
 test.csv file contains
 
 ```
- 
+	http://google.com/
+	www.github.com
+	https://www.npmjs.com
+	www.npmjs.com
+	npmjs.com 
 ```
 ```javascript
- var csv = require('csv-array');
- csv.parseCSV("test.csv", function(data){
-   console.log(JSON.stringify(data));
- });
-``` 
-
-Output
-```json
-[  
-   {  
-      "Question Statement":"this is a test question answer it?",
-      "Option 1":"answer 1",
-      "Option 2":"answer 2",
-      "Option 3":"answer3",
-      "Option 4":"answer 4",
-      "Option 5":"",
-      "Answer":"answer 2",
-      "Deficulty":"3",
-      "Category":"test"
-   },
-   {  
-      "Question Statement":"this is another test question answer it?",
-      "Option 1":"answer1,answer2",
-      "Option 2":"answer2,answer3",
-      "Option 3":"answer4,answer5",
-      "Option 4":"answer5,answer6",
-      "Option 5":"answer7,answer8",
-      "Answer":"answer1,answer2",
-      "Deficulty":"2",
-      "Category":"test"
-   }
-]
-```
-
-```javascript
- var csv = require('csv-array');
- csv.parseCSV("test.csv", function(data){
-   console.log(JSON.stringify(data));
- }, false);
-```
-Output
-```json
-[  
-   [  
-      "Question Statement",
-      "Option 1",
-      "Option 2",
-      "Option 3",
-      "Option 4",
-      "Option 5",
-      "Answer",
-      "Deficulty",
-      "Category"
-   ],
-   [  
-      "this is a test question answer it?",
-      "answer 1",
-      "answer 2",
-      "answer3",
-      "answer 4",
-      "",
-      "answer 2",
-      "3",
-      "test"
-   ],
-   [  
-      "this is another test question answer it?",
-      "answer1,answer2",
-      "answer2,answer3",
-      "answer4,answer5",
-      "answer5,answer6",
-      "answer7,answer8",
-      "answer1,answer2",
-      "2",
-      "test"
-   ]
-]
-``` 
-
-```javascript
- var csv = require('csv-array');
- csv.parseCSV("test.csv", function(data){
-   console.log(JSON.stringify(data));
- }, true);
+	var sc = require('./status-check');
+	sc.testLinkStatus("links.csv", function(data) {
+		console.log(JSON.stringify(data));
+	}, true);
  /*
-   The output will be as same as
-   var csv = require('csv-array');
-    csv.parseCSV("test.csv", function(data){
-      console.log(JSON.stringify(data));
-    });
+  the last argument true specifies that the progress will be displayed in console
  */
 ``` 
+
 Output
 ```json
 [  
    {  
-      "Question Statement":"this is a test question answer it?",
-      "Option 1":"answer 1",
-      "Option 2":"answer 2",
-      "Option 3":"answer3",
-      "Option 4":"answer 4",
-      "Option 5":"",
-      "Answer":"answer 2",
-      "Deficulty":"3",
-      "Category":"test"
+      "url":"http://google.com/",
+      "statusCode":200,
+      "description":"Success"
    },
    {  
-      "Question Statement":"this is another test question answer it?",
-      "Option 1":"answer1,answer2",
-      "Option 2":"answer2,answer3",
-      "Option 3":"answer4,answer5",
-      "Option 4":"answer5,answer6",
-      "Option 5":"answer7,answer8",
-      "Answer":"answer1,answer2",
-      "Deficulty":"2",
-      "Category":"test"
+      "url":"npmjs.com",
+      "statusCode":"XXX",
+      "description":"Invalid URL"
+   },
+   {  
+      "url":"www.github.com",
+      "statusCode":"XXX",
+      "description":"Invalid URL"
+   },
+   {  
+      "url":"https://www.npmjs.com",
+      "statusCode":200,
+      "description":"Success"
+   },
+   {  
+      "url":"www.npmjs.com",
+      "statusCode":"XXX",
+      "description":"Invalid URL"
    }
 ]
 ```
+
+
 
