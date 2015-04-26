@@ -11,14 +11,14 @@
     "response",
     "link-checker",
     "status-check",
-    "website-status"
+    "website-status",
+    "HTTP-status",
+    "Web-crawler"
   ],
   "author": "Sahasrangshu Guha",
   "license": "MIT",
   "dependencies": {
-    "csv-array": "0.0.18",
-    "fs": "0.0.2",
-    "phantom": "^0.7.2",
-    "webpage": "^0.1.0"
+    "csv-array": "0.0.19",
+    "request": "^2.55.0"
   }
 }
