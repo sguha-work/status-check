@@ -1,5 +1,5 @@
 module.exports = {
-	testLinks : function(fileName, callBack, showProgressInConsole) {
+	testLinkStatus : function(fileName, callBack, showProgressInConsole) {
 		if(typeof showProgressInConsole == "undefined") {
 			showProgressInConsole = false;
 		}
@@ -24,6 +24,11 @@ module.exports = {
 			outputObject["statusCode"] = ((typeof response != "undefined")?response.statusCode:"XXX");
 			outputObject["description"] = ((typeof response != "undefined")?presentObject.getStatusDescription(response.statusCode):"Invalid URL");
 			outputArray.push(outputObject);
+			if(typeof response.request!="undefined" && typeof response.request.headers.referer != "undefined" && response.request.headers.referer.trim() != "") {
+				outputObject["statusCode"] = "3xx";
+				outputObject["description"] = "Redirected";
+				outputObject["redirectedTo"] = response.request.headers.referer; 
+			}
 			if(showProgressInConsole) {
 				console.log(" Checked:: "+outputObject["url"]+" Status:: "+outputObject["statusCode"]+" Description:: "+ outputObject["description"]);
 			}
