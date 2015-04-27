@@ -44,7 +44,7 @@ test.csv file contains
 ```
 ```javascript
 	var sc = require('status-check');
-	sc.testLinks("links.csv", function(data) {
+	sc.testLinks("test.csv", function(data) {
 		console.log(JSON.stringify(data));
 	}, true);
  /*
