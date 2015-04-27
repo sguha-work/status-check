@@ -6,6 +6,9 @@ or from browser based application.
 ## Dependencies
 This package got only one dependencies of "csv-array".
 
+## Change Log
+> Bug fix in detection of redirect
+
 ## Usage Guide
 ### Installing
 
