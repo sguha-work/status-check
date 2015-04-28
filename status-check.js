@@ -17,18 +17,18 @@ module.exports = {
 
 	checkSingleLink : function(linksArray, index, callBack, outputArray, showProgressInConsole) {
 		var presentObject = this;
-		var request = require('request');
-		request(linksArray[index], function(error, response, body) {
-			var outputObject = {};
+		var http = require('http');
+		var https = require('https');
+		var method = https;
+		if(linksArray[index].indexOf('https')==-1) {
+			method = http;
+		}
+		http.get(linksArray[index], function(response) {
+		 	var outputObject = {};
 			outputObject["url"] = linksArray[index];
 			outputObject["statusCode"] = ((typeof response != "undefined")?response.statusCode:"XXX");
 			outputObject["description"] = ((typeof response != "undefined")?presentObject.getStatusDescription(response.statusCode):"Invalid URL");
 			outputArray.push(outputObject);
-			if(typeof response.request!="undefined" && typeof response.request.headers.referer != "undefined" && response.request.headers.referer.trim() != "") {
-				outputObject["statusCode"] = "3xx";
-				outputObject["description"] = "Redirected";
-				outputObject["redirectedTo"] = response.request.headers.referer; 
-			}
 			if(showProgressInConsole) {
 				console.log(" Checked:: "+outputObject["url"]+" Status:: "+outputObject["statusCode"]+" Description:: "+ outputObject["description"]);
 			}
@@ -38,7 +38,7 @@ module.exports = {
 			} else {
 				presentObject.checkSingleLink(linksArray, index, callBack, outputArray, showProgressInConsole);
 			}
-		});
+		})
 	},
 
 	getStatusDescription : function(statusCode) {
