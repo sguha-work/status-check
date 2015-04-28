@@ -23,7 +23,7 @@ module.exports = {
 		if(linksArray[index].indexOf('https')==-1) {
 			method = http;
 		}
-		http.get(linksArray[index], function(response) {
+		method.get(linksArray[index], function(response) {
 		 	var outputObject = {};
 			outputObject["url"] = linksArray[index];
 			outputObject["statusCode"] = ((typeof response != "undefined")?response.statusCode:"XXX");
