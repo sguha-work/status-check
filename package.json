@@ -1,6 +1,6 @@
 {
   "name": "status-check",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "This package take a list of website link as csv and create an array with the status code and description after hitting every links",
   "main": "status-check.js",
   "scripts": {},
@@ -10,6 +10,7 @@
   },
   "keywords": [
     "HTTP",
+    "HTTPS",
     "response",
     "link-checker",
     "status-check",
@@ -26,6 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "csv-array": "0.0.2",
-    "request": "^2.55.0"
+    "http": "0.0.0",
+    "https": "^1.0.0",
   }
 }
