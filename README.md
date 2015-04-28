@@ -7,8 +7,9 @@ or from browser based application.
 This package got only one dependencies of "csv-array".
 
 ## Change Log
-* Bug fix in detection of redirect
-* Improvement in speed as dependency improved 
+* Bug fix for https links
+* Dependency changes
+* Huge improvement in parsing speed
 
 ## Usage Guide
 ### Installing
