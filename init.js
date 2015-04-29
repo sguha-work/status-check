@@ -4,4 +4,4 @@ sc.testLinkStatus('links.csv', function(data) {
 	fs.writeFile('output.json', JSON.stringify(data) , function(){
 		console.log("done");
 	});
-}, true)
+}, true);
