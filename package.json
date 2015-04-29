@@ -1,6 +1,6 @@
 {
   "name": "status-check",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "This package take a list of website link as csv and create an array with the status code and description after hitting every links",
   "main": "status-check.js",
   "scripts": {},
