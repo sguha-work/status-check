@@ -28,9 +28,12 @@ module.exports = {
 			outputObject["url"] = linksArray[index];
 			outputObject["statusCode"] = ((typeof response != "undefined")?response.statusCode:"XXX");
 			outputObject["description"] = ((typeof response != "undefined")?presentObject.getStatusDescription(response.statusCode):"Invalid URL");
+			if(parseInt(outputObject["statusCode"]/100) == 3 && typeof response.headers.location != "undefined") {
+				outputObject["redirectedTo"] = response.headers.location;
+			}
 			outputArray.push(outputObject);
 			if(showProgressInConsole) {
-				console.log(" Checked:: "+outputObject["url"]+" Status:: "+outputObject["statusCode"]+" Description:: "+ outputObject["description"]);
+				console.log(" Checked:: "+outputObject["url"]+" Status:: "+outputObject["statusCode"]+" Description:: "+ outputObject["description"]+((typeof outputObject["redirectedTo"])!="undefined"?" Redirected to:: "+outputObject["redirectedTo"]:""));
 			}
 			index+=1;
 			if(index>=linksArray.length) {
