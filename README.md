@@ -1,20 +1,20 @@
 # status-check
  >This is a node-js program to check a list of URL's HTTP status. The program
 can be used in both for SEO purpose and testing purpose and can be used from terminal
-or from browser based application.
+or from browser based application. Those who need to check a bulk of link is valid or not can use the Easy-To-Setup program.
+They don't need to know a deep of nodejs also. See the UsageGuide for details
 
 ## Dependencies
 This package got only one dependencies of "csv-array".
 
 ## Change Log
 * Bug fix for https links
-* Dependency changes
-* Huge improvement in parsing speed
+* If redirected then "redirectedTo" url will be recorded also
 
 ## Usage Guide
 ### Installing
 
-The installation is just a command
+The installation is just a command in terminal
 
 ```
  npm install status-check
@@ -59,33 +59,28 @@ test.csv file contains
 
 Output
 ```json
-[  
-   {  
-      "url":"http://google.com/",
-      "statusCode":200,
-      "description":"Success"
-   },
-   {  
-      "url":"npmjs.com",
-      "statusCode":"XXX",
-      "description":"Invalid URL"
-   },
-   {  
-      "url":"www.github.com",
-      "statusCode":"XXX",
-      "description":"Invalid URL"
-   },
-   {  
-      "url":"https://www.npmjs.com",
-      "statusCode":200,
-      "description":"Success"
-   },
-   {  
-      "url":"www.npmjs.com",
-      "statusCode":"XXX",
-      "description":"Invalid URL"
-   }
-]
+[{
+    "url": "http://google.com/",
+    "statusCode": 302,
+    "description": "Found",
+    "redirectedTo": "http://www.google.co.in/?gfe_rd=cr&ei=3n1AVeDJDdGAuATt3YGACA"
+}, {
+    "url": "www.github.com",
+    "statusCode": 400,
+    "description": "Bad Request"
+}, {
+    "url": "https://www.npmjs.com",
+    "statusCode": 200,
+    "description": "Success"
+}, {
+    "url": "www.npmjs.com",
+    "statusCode": 400,
+    "description": "Bad Request"
+}, {
+    "url": "npmjs.com ",
+    "statusCode": 400,
+    "description": "Bad Request"
+}]
 ```
 
 
