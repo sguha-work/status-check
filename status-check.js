@@ -5,7 +5,7 @@ module.exports = {
 		}
 		var presentObject = this;
 		var csv = require('csv-array');
-		csv.parseCSV("links.csv", function(data) {
+		csv.parseCSV(fileName, function(data) {
 			presentObject.startCheckingLink(data, callBack, showProgressInConsole);
 		}, false);
 	},
