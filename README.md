@@ -8,8 +8,7 @@ They don't need to know a deep of nodejs also. See the UsageGuide for details
 This package got only one dependencies of "csv-array".
 
 ## Change Log
-* Bug fix for https links
-* If redirected then "redirectedTo" url will be recorded also
+* Bug fixes
 
 ## Usage Guide
 ### Installing
