@@ -9,7 +9,8 @@ This package got only one dependencies of "csv-array".
 
 ## Change Log
 * Bug fixes
-
+* if link doesn't contain "http://" or "https://" then "http://" will be prefixed autometically and a new 
+* attribute "alteredLink" will be added to output object
 ## Usage Guide
 ### Installing
 
@@ -48,7 +49,7 @@ test.csv file contains
 ```
 ```javascript
 	var sc = require('status-check');
-	sc.testLinks("test.csv", function(data) {
+	sc.testLinkStatus("test.csv", function(data) {
 		console.log(JSON.stringify(data));
 	}, true);
  /*
