@@ -20,9 +20,9 @@ The installation is just a command in terminal
  npm install status-check
 ```
 
-After installing the package you can use the "testLinks" method as follows
+After installing the package you can use the "testLinkStatus" method as follows
 ```
- testLinks("CSV-file-name.csv",  callBack, showProgressInConsole)
+ testLinkStatus("CSV-file-name.csv",  callBack, showProgressInConsole)
    /*
       Where callBack is the method which have the output array of object as argument, and you can do 
       anything you like inside the function with the array
