@@ -51,11 +51,38 @@ module.exports = {
 			}
 			index+=1;
 			if(index>=linksArray.length) {
-				callBack(outputArray);
+				callBack(null, outputArray);
 			} else {
 				presentObject.checkSingleLink(linksArray, index, callBack, outputArray, showProgressInConsole);
 			}
-		})
+		}).on('error', (e) => {
+            // callBack(e);
+            // We don't want to stop. Write the error and continue.
+            var outputObject = {};
+		 	if(!alterFlag) {
+				outputObject["url"] = linksArray[index];
+		 	} else {
+		 		outputObject["url"] = originalLink;
+		 	}
+			outputObject["statusCode"] = e.code;
+			outputObject["description"] = e.message;
+			if(alterFlag) {
+				outputObject["alteredLink"] = linksArray[index];
+			}
+			if(parseInt(outputObject["statusCode"]/100) == 3 && typeof response.headers.location != "undefined") {
+				outputObject["redirectedTo"] = response.headers.location;
+            }
+            outputArray.push(outputObject);
+			if(showProgressInConsole) {
+				console.log(" Checked:: "+outputObject["url"]+" Status:: "+outputObject["statusCode"]+" Description:: "+ outputObject["description"]+((typeof outputObject["redirectedTo"])!="undefined"?" Redirected to:: "+outputObject["redirectedTo"]:""));
+            }
+            index+=1;
+			if(index>=linksArray.length) {
+				callBack(null, outputArray);
+			} else {
+				presentObject.checkSingleLink(linksArray, index, callBack, outputArray, showProgressInConsole);
+			}
+        });
 	},
 
 	getStatusDescription : function(statusCode) {
@@ -142,5 +169,4 @@ module.exports = {
 				return "HTTP Version Not Supported";	
 		}
 	}
-
 };
