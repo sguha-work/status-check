@@ -49,8 +49,12 @@ test.csv file contains
 ```
 ```javascript
 	var sc = require('status-check');
-	sc.testLinkStatus("test.csv", function(data) {
-		console.log(JSON.stringify(data));
+	sc.testLinkStatus("test.csv", function(error, data) {
+		if(error){
+        		console.error(error);
+    		} else {
+			console.log(JSON.stringify(data));
+		}
 	}, true);
  /*
   the last argument true specifies that the progress will be displayed in console
